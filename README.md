@@ -120,9 +120,6 @@ game.modules.get("umbra-sombras").api.diagnosticarSombra();
 
 O módulo sussurra para você um relatório com ✔/✘ dos motivos possíveis: opção ligada, projetar sombra, efeito que remove a sombra, imagem carregada, visibilidade, altura, máximo de sombras, luz natural e luzes que alcançam o token.
 
-## Migração de versões antigas
-Na primeira vez que o mestre entra em um mundo, o módulo migra automaticamente os dados dos antigos módulos `t20-sombras` e `t20-visao`: configurações, luz natural das cenas, altura e sombras de tokens e protótipos de atores, e os comportamentos *Interior* das regiões. Os dados antigos não são apagados. A migração roda uma só vez.
-
 ## Limitações
 - O corte pelas paredes é feito por vértice numa malha de 9 colunas, então em cantos e paredes muito inclinadas a borda pode ficar levemente facetada.
 - Sombras de tiles ficam abaixo da camada de tiles: um tile de piso no mesmo nível cobre a sombra de um objeto.
