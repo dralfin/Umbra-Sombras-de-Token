@@ -2,7 +2,7 @@
   "id": "umbra-sombras",
   "title": "Umbra - Sombras de Token",
   "description": "Sombras projetadas a partir da imagem do token, altura de token, luz natural (editor do sol) e interiores. Funciona em qualquer sistema.",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "authors": [
     {
       "name": "Olho da Tormenta"
@@ -26,5 +26,10 @@
     "RegionBehavior": {
       "interior": {}
     }
-  }
+  },
+  "url": "https://github.com/dralfin/Umbra-Sombras-de-Token",
+  "manifest": "https://github.com/dralfin/Umbra-Sombras-de-Token/releases/latest/download/module.json",
+  "download": "https://github.com/dralfin/Umbra-Sombras-de-Token/releases/download/v4.0.2/module.zip",
+  "readme": "https://github.com/dralfin/Umbra-Sombras-de-Token/blob/main/README.md",
+  "bugs": "https://github.com/dralfin/Umbra-Sombras-de-Token/issues"
 }
