@@ -1,0 +1,30 @@
+{
+  "id": "umbra-sombras",
+  "title": "Umbra - Sombras de Token",
+  "description": "Sombras projetadas a partir da imagem do token, altura de token, luz natural (editor do sol) e interiores. Funciona em qualquer sistema.",
+  "version": "4.0.0",
+  "authors": [
+    {
+      "name": "Olho da Tormenta"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "languages": [
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "documentTypes": {
+    "RegionBehavior": {
+      "interior": {}
+    }
+  }
+}

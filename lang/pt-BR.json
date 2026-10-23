@@ -1,0 +1,84 @@
+{
+  "UMBRA": {
+    "Title": "Umbra - Sombras de Token",
+    "Height": "Altura",
+    "HeightHint": "Na unidade da cena. Deixe em branco para usar a altura padrão do módulo. 0 = sem sombra.",
+    "CastShadow": "Projetar sombra",
+    "MaxShadows": "Máximo de sombras",
+    "MaxShadowsHint": "Quantas sombras este token pode ter ao mesmo tempo (as mais fortes vencem). Em branco = padrão do módulo.",
+    "NaturalLight": "Há luz natural",
+    "NaturalLightHint": "Liga o sol/lua: gera uma sombra direcional em todos os tokens, mais fraca conforme a cena escurece.",
+    "SunAngle": "Posição do sol (graus)",
+    "SunAngleHint": "0 = norte (topo do mapa), 90 = leste, 180 = sul, 270 = oeste. A sombra cai no lado oposto.",
+    "SunElevation": "Altura do sol (graus)",
+    "SunElevationHint": "5 = quase no horizonte (sombras longas), 90 = a pino (sem sombra).",
+    "SunIntensity": "Intensidade da luz natural",
+    "Scene": {
+      "Title": "Umbra - Sombras de Token"
+    },
+    "Settings": {
+      "showShadows": {
+        "Name": "Mostrar sombras (apenas para mim)",
+        "Hint": "Desative para ganhar desempenho neste computador."
+      },
+      "shadowOpacity": {
+        "Name": "Opacidade máxima das sombras",
+        "Hint": "Opacidade de uma sombra com força total."
+      },
+      "shadowBlur": {
+        "Name": "Suavização das sombras",
+        "Hint": "Desfoque das bordas. 0 desliga o desfoque."
+      },
+      "defaultHeight": {
+        "Name": "Altura padrão do token",
+        "Hint": "Usada quando o token não tem altura própria (unidade da cena)."
+      },
+      "defaultMaxShadows": {
+        "Name": "Máximo padrão de sombras por token",
+        "Hint": "Usado quando o token não define o seu."
+      },
+      "maxLengthFactor": {
+        "Name": "Comprimento máximo da sombra",
+        "Hint": "Alcance da sombra colada na fonte de luz, como múltiplo da altura do token. Ela diminui até sumir na borda do alcance da luz."
+      },
+      "efeitosSemSombra": {
+        "Name": "Efeitos que removem a sombra",
+        "Hint": "Nomes EXATOS de efeitos, separados por vírgula (sem diferenciar acento ou maiúsculas). Tokens com qualquer um deles ativo não projetam sombra; efeitos com nome parecido, como “Espírito Caído”, não contam. Padrão: Caído, Invisível."
+      },
+      "luzPropriaDistancia": {
+        "Name": "Distância da luz própria do token (quadrados)",
+        "Hint": "Um token que emite luz projeta a própria sombra como se a luz estivesse esta distância à sua frente (na direção da rotação do token), com a sombra caindo para trás. 0 desliga."
+      },
+      "tremorSombras": {
+        "Name": "Sombras tremem com a animação da luz",
+        "Hint": "Sombras geradas por luzes com animação (tocha, chama, pulso etc.) tremem levemente; sem animação, a sombra fica parada."
+      }
+    },
+    "Sol": {
+      "Botao": "Editor do sol (luz natural)",
+      "Titulo": "Luz natural: editor do sol",
+      "Ativa": "Há luz natural",
+      "Direcao": "Direção do sol",
+      "Altura": "Altura do sol",
+      "Forca": "Força do sol",
+      "Ajuda": "Arraste o sol: no círculo para escolher a direção (N no topo do mapa), na barra da esquerda para a altura (alto = sombra curta, baixo = sombra longa) e na barra da direita para a força. As sombras do mapa mudam em tempo real, como prévia; Salvar grava na cena e Cancelar volta ao valor anterior. A sombra real fica mais fraca conforme a cena escurece.",
+      "Salvar": "Salvar",
+      "Cancelar": "Cancelar",
+      "SoMestre": "Somente o mestre pode editar a luz natural.",
+      "Habilitar": "Habilitar luz natural",
+      "Posicao": "Posição do sol"
+    },
+    "Interior": {
+      "Tipo": "Interior (escurece, suprime clima e sombra)",
+      "FIELDS": {
+        "escuridao": {
+          "label": "Escuridão do interior",
+          "hint": "Nível de escuridão (0 a 1) na região inteira e na tela. Nunca fica mais clara que a da cena."
+        }
+      },
+      "ClimaNome": "Suprimir clima (Interior)",
+      "EscurecerNome": "Escurecer interior (Interior)"
+    },
+    "TileCastShadowHint": "Tiles não projetam sombra por padrão. Ligue nos que são objetos (pilar, estátua, móvel, árvore). A sombra aparece abaixo do tile."
+  }
+}
