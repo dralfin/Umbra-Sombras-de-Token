@@ -50,6 +50,7 @@ Tokens com certos efeitos ativos não projetam sombra. O padrão é **Caído** e
 Em *Configuração do Tile > Aparência*, seção **Umbra - Sombras de Token**:
 
 - **Projetar sombra:** **desligado por padrão**. Ligue só nos tiles que são objetos.
+- **Botão no HUD (clique direito no tile):** o ícone de sol liga/desliga a sombra com um clique, sem abrir a configuração. Com vários tiles selecionados, o clique vale para todos.
 - **Altura** e **Máximo de sombras:** iguais aos do token.
 
 A sombra do tile é desenhada logo abaixo dele, então não cobre o próprio tile. Tiles de piso no mesmo nível ficam por cima da sombra. Tiles ocultos não projetam sombra, e tiles que desaparecem ao revelar (teto com oclusão) acompanham a opacidade.
@@ -118,6 +119,9 @@ game.modules.get("umbra-sombras").api.diagnosticarSombra();
 ```
 
 O módulo sussurra para você um relatório com ✔/✘ dos motivos possíveis: opção ligada, projetar sombra, efeito que remove a sombra, imagem carregada, visibilidade, altura, máximo de sombras, luz natural e luzes que alcançam o token.
+
+## Migração de versões antigas
+Na primeira vez que o mestre entra em um mundo, o módulo migra automaticamente os dados dos antigos módulos `t20-sombras` e `t20-visao`: configurações, luz natural das cenas, altura e sombras de tokens e protótipos de atores, e os comportamentos *Interior* das regiões. Os dados antigos não são apagados. A migração roda uma só vez.
 
 ## Limitações
 - O corte pelas paredes é feito por vértice numa malha de 9 colunas, então em cantos e paredes muito inclinadas a borda pode ficar levemente facetada.

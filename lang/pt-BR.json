@@ -79,6 +79,7 @@
       "ClimaNome": "Suprimir clima (Interior)",
       "EscurecerNome": "Escurecer interior (Interior)"
     },
-    "TileCastShadowHint": "Tiles não projetam sombra por padrão. Ligue nos que são objetos (pilar, estátua, móvel, árvore). A sombra aparece abaixo do tile."
+    "TileCastShadowHint": "Tiles não projetam sombra por padrão. Ligue nos que são objetos (pilar, estátua, móvel, árvore). A sombra aparece abaixo do tile.",
+    "TileHudToggle": "Ligar/desligar a sombra do tile"
   }
 }

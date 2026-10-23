@@ -111,3 +111,36 @@ export function onRenderSceneConfig(app, html) {
     definir("sunElevation", novo.elev); definir("sunIntensity", novo.forca);
   });
 }
+
+/**
+ * Botão no HUD do tile (clique direito): liga/desliga a sombra do tile.
+ * Com vários tiles selecionados, aplica o mesmo valor a todos.
+ */
+export function onRenderTileHUD(app, html) {
+  const root = html instanceof HTMLElement ? html : html[0];
+  const tile = app.object ?? app.document?.object;
+  const doc = tile?.document;
+  if (!root || !doc || root.querySelector(`[data-action="${MOD}-sombra"]`)) return;
+
+  const ligada = tokenFlagsDe(doc).castShadow === true;
+  const botao = document.createElement("button");
+  botao.type = "button";
+  botao.className = `control-icon${ligada ? " active" : ""}`;
+  botao.dataset.action = `${MOD}-sombra`;
+  botao.dataset.tooltip = L("TileHudToggle");
+  botao.setAttribute("aria-label", L("TileHudToggle"));
+  botao.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  botao.addEventListener("click", async (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    const novo = !botao.classList.contains("active");
+    const alvos = canvas.tiles.controlled.some((t) => t.document.id === doc.id) ? canvas.tiles.controlled : [tile];
+    await canvas.scene.updateEmbeddedDocuments("Tile", alvos.map((t) => ({ _id: t.document.id, [`flags.${MOD}.castShadow`]: novo })));
+    botao.classList.toggle("active", novo);
+  });
+
+  const coluna = root.querySelector(".col.right") ?? root.querySelector(".col.left") ?? root;
+  coluna.append(botao);
+}
+
+const tokenFlagsDe = (doc) => doc?.flags?.[MOD] ?? {};

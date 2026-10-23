@@ -2,7 +2,7 @@
 import { MOD } from "./constants.mjs";
 import { registerSettings } from "./settings.mjs";
 import { ShadowManager } from "./shadows.mjs";
-import { onRenderTokenConfig, onRenderTileConfig, onRenderSceneConfig } from "./config-ui.mjs";
+import { onRenderTokenConfig, onRenderTileConfig, onRenderTileHUD, onRenderSceneConfig } from "./config-ui.mjs";
 import { abrirMenuSol } from "./menu-sol.mjs";
 export { abrirMenuSol };
 
@@ -96,3 +96,4 @@ Hooks.on(`${MOD}.previewSol`, (cena) => { if (cena?.id === canvas.scene?.id) ful
 Hooks.on("renderTokenConfig", onRenderTokenConfig);
 Hooks.on("renderSceneConfig", onRenderSceneConfig);
 Hooks.on("renderTileConfig", onRenderTileConfig);
+Hooks.on("renderTileHUD", onRenderTileHUD);
