@@ -1,129 +1,131 @@
-# Umbra - Sombras de Token
+# 🌑 Umbra — Sombras de Token
 
-Módulo para **Foundry VTT v13** que projeta sombras realistas a partir da imagem de tokens e tiles. Funciona em **qualquer sistema**.
+**Luz e sombra. Mais profundidade. Uma experiência visual mais imersiva.**
 
-A sombra é a própria silhueta da imagem, esticada para o lado oposto à luz, e muda conforme a altura do objeto, a distância da fonte de luz e as paredes do mapa.
+Um módulo para **Foundry Virtual Tabletop v13**, compatível com qualquer sistema de jogo, que projeta sombras realistas a partir das imagens de tokens e tiles.
 
-## Instalação
-No Foundry: *Add-on Modules > Install Module* e cole em **Manifest URL**:
+As sombras são geradas a partir da própria silhueta dos objetos e se adaptam à direção e à altura da fonte de luz, à distância, às paredes do mapa e às condições da cena, trazendo mais profundidade e realismo para suas aventuras.
 
-```
-https://github.com/dralfin/Umbra-Sombras-de-Token/releases/latest/download/module.json
-```
+## ✨ Funcionalidades
 
-Depois ative o módulo no mundo. Instalação manual: copie esta pasta para `Data/modules/umbra-sombras` e reinicie o Foundry.
+### 🌑 Sombras de tokens e tiles
 
-## O que o módulo faz
+- **Sombras realistas:** projete a silhueta dos tokens na direção oposta à fonte de luz.
+- **Altura configurável:** ajuste o comprimento das sombras conforme a altura dos objetos.
+- **Múltiplas fontes de luz:** combine sombras produzidas pelo sol, pela lua e por luzes artificiais.
+- **Sombras personalizadas:** habilite ou desabilite a projeção individualmente para cada token ou tile.
+- **Controle de intensidade:** ajuste a opacidade, a suavização e a quantidade máxima de sombras.
+- **Luz própria:** tokens que emitem luz podem projetar sua própria sombra.
 
-| Recurso | Resumo |
-|---|---|
-| Sombras de tokens | Silhueta da imagem projetada pelo sol e por luzes da cena e de outros tokens |
-| Sombras de tiles | Opcional, por tile (pilares, estátuas, móveis, árvores) |
-| Luz natural | Sol/lua por cena, com editor visual de direção, altura e força |
-| Paredes | Sombras param nas paredes; portas abertas deixam passar |
-| Interiores | Regiões onde não há sol, clima nem sombra natural, com escuridão própria |
-| Luz própria | Token que emite luz projeta a própria sombra para trás |
-| Efeitos | Caído e Invisível (configurável) removem a sombra |
-| Animação | Sombras de luzes animadas (tocha, chama...) tremem levemente |
+### ☀️ Luz natural — Sol e Lua
 
-## Como as sombras se comportam
-- **Direção:** a sombra cai no lado oposto à fonte de luz.
-- **Tamanho:** quanto mais perto da luz, maior a sombra; ela diminui até sumir na borda do alcance da luz. Para o sol, o comprimento depende da altura do objeto e da altura do sol (sol baixo = sombra longa, sol a pino = sem sombra).
-- **Força:** luzes mais fortes e mais próximas geram sombras mais escuras. A luz natural enfraquece conforme a cena escurece, e luz artificial em pleno dia projeta sombra mais fraca.
-- **Várias fontes:** cada token pode ter mais de uma sombra ao mesmo tempo. As mais fortes vencem, até o máximo configurado.
-- **Paredes:** cada ponto da sombra para na primeira parede que bloqueia luz, sem vazar para o outro lado. Portas abertas e paredes sem restrição de luz não cortam. A luz de uma fonte também só gera sombra onde ela chega (uma parede bloqueia a luz do outro lado).
+Configure a iluminação natural de cada cena por meio de um editor visual com prévia em tempo real.
 
-## Tokens
-Em *Configuração do Token > Aparência*, seção **Umbra - Sombras de Token** (vale também para o token protótipo do ator):
+- **Direção do sol:** escolha de onde vem a luz e para qual lado as sombras serão projetadas.
+- **Altura do sol:** simule desde um sol próximo ao horizonte, com sombras longas, até o sol a pino, com sombras mínimas.
+- **Intensidade luminosa:** ajuste a força da iluminação natural.
+- **Configuração por cena:** personalize a iluminação de cada mapa independentemente.
 
-- **Altura:** na unidade da cena. Em branco usa a altura padrão do módulo; `0` = sem sombra.
-- **Projetar sombra:** liga/desliga a sombra deste token (ligado por padrão).
-- **Máximo de sombras:** quantas sombras o token pode ter ao mesmo tempo (0 a 8). Em branco usa o padrão do módulo.
+A luz natural é desativada por padrão e pode ser configurada pelo botão de sol nos controles de iluminação, pela configuração da cena ou pela API do módulo.
 
-### Luz própria do token
-Um token que emite luz projeta a própria sombra para trás, como se a luz estivesse um pouco à frente dele, na direção da rotação do token. A distância é configurável (veja *Configurações*).
+### 🧱 Paredes e bloqueio de luz
 
-### Efeitos que removem a sombra
-Tokens com certos efeitos ativos não projetam sombra. O padrão é **Caído** e **Invisível** (o módulo também reconhece os status `prone` e `invisible` do Foundry). Pela configuração você troca a lista por nomes EXATOS de efeitos, separados por vírgula. Acento e maiúsculas não importam, e um efeito de nome parecido (como "Espírito Caído") não conta.
+As sombras respeitam a geometria das paredes e os limites da iluminação.
 
-## Tiles
-Em *Configuração do Tile > Aparência*, seção **Umbra - Sombras de Token**:
+- As paredes bloqueiam a projeção das sombras.
+- Portas abertas e paredes sem restrição de luz não interrompem a projeção.
+- As sombras das fontes artificiais aparecem apenas nas áreas alcançadas pela luz.
+- A projeção considera os obstáculos presentes entre a fonte luminosa e os objetos.
 
-- **Projetar sombra:** **desligado por padrão**. Ligue só nos tiles que são objetos.
-- **Botão no HUD (clique direito no tile):** o ícone de sol liga/desliga a sombra com um clique, sem abrir a configuração. Com vários tiles selecionados, o clique vale para todos.
-- **Altura** e **Máximo de sombras:** iguais aos do token.
+### 🏠 Interiores e áreas cobertas
 
-A sombra do tile é desenhada logo abaixo dele, então não cobre o próprio tile. Tiles de piso no mesmo nível ficam por cima da sombra. Tiles ocultos não projetam sombra, e tiles que desaparecem ao revelar (teto com oclusão) acompanham a opacidade.
+Transforme casas, cavernas e masmorras em ambientes protegidos da iluminação natural.
 
-## Luz natural (sol/lua)
-Cada cena tem a sua luz natural, desligada por padrão. Ela gera uma sombra direcional em todos os tokens e tiles habilitados.
+- Defina regiões com comportamento de interior.
+- Suprima o clima e as sombras naturais dentro dessas áreas.
+- Configure a escuridão própria de cada interior.
+- Integre o comportamento às ferramentas nativas de regiões do Foundry VTT.
 
-### Editor do sol
-Abra por:
-- o botão de sol nos controles de iluminação (somente mestre);
-- o botão em *Configuração da Cena > Iluminação*;
-- macro: `game.modules.get("umbra-sombras").api.abrirMenuLuzNatural();`
+### 🎭 Integração com efeitos
 
-No editor, arraste o sol em três controles, com **prévia em tempo real** no mapa:
-- **Posição do sol** (círculo): direção. N no topo do mapa; a sombra cai do lado oposto. Um token de exemplo mostra o resultado.
-- **Altura do sol** (barra da esquerda): de 5° (quase no horizonte, sombra longa) a 90° (a pino, sem sombra).
-- **Força do sol** (barra da direita): de 0% a 100%.
+Alguns efeitos podem impedir que um token projete sombras.
 
-**Salvar** grava na cena; **Cancelar** volta ao valor anterior. Os mesmos valores existem como campos numéricos em *Configuração da Cena > Iluminação*: posição do sol (0 = norte, 90 = leste, 180 = sul, 270 = oeste), altura (5 a 90) e intensidade (0 a 1).
+- **Caído e Invisível:** reconhecidos por padrão.
+- **Status nativos:** o módulo também reconhece os estados `prone` e `invisible` do Foundry.
+- **Personalização:** configure os nomes exatos dos efeitos que removem a sombra.
 
-## Interiores (regiões)
-Para marcar uma área coberta (casa, caverna, masmorra):
+### 🔥 Sombras animadas
 
-1. Crie uma **Região** cobrindo a área.
-2. Adicione o comportamento **Interior (escurece, suprime clima e sombra)**.
-3. Ajuste a **Escuridão do interior** (0 a 1).
+As sombras de luzes animadas, como tochas e chamas, podem apresentar um leve tremor para simular a variação natural da iluminação.
 
-Dentro da região:
-- o clima é suprimido;
-- o sol/lua não projeta sombra natural;
-- a escuridão do interior vale na região inteira e na força das sombras (nunca fica mais clara que a da cena).
+O efeito pode ser ativado ou desativado nas configurações do módulo.
 
-O módulo cria e mantém, por conta própria, os comportamentos nativos *Suprimir clima (Interior)* e *Escurecer interior (Interior)* dentro da região. Não apague esses dois à mão.
+## ⚙️ Personalização
 
-## Configurações do módulo
-Em *Configurações > Módulos > Umbra - Sombras de Token*:
+O Umbra oferece configurações globais e individuais para adaptar as sombras ao seu mapa e ao desempenho do computador.
 
-| Configuração | Escopo | Descrição |
-|---|---|---|
-| Mostrar sombras | só para você | Desligue para ganhar desempenho neste computador |
-| Opacidade máxima das sombras | mundo | Opacidade de uma sombra com força total |
-| Suavização das sombras | mundo | Desfoque das bordas; `0` desliga o filtro |
-| Altura padrão do token | mundo | Usada quando o token/tile não tem altura própria |
-| Máximo padrão de sombras por token | mundo | Usado quando o token/tile não define o seu |
-| Comprimento máximo da sombra | mundo | Alcance da sombra colada na luz, como múltiplo da altura |
-| Efeitos que removem a sombra | mundo | Lista de nomes exatos separados por vírgula |
-| Distância da luz própria do token | mundo | Em quadrados; `0` desliga a sombra da luz própria |
-| Sombras tremem com a animação da luz | mundo | Tremor leve em sombras de luzes animadas |
+- Opacidade máxima das sombras.
+- Suavização e desfoque das bordas.
+- Altura padrão dos tokens.
+- Quantidade máxima de sombras por objeto.
+- Comprimento máximo das sombras.
+- Distância da luz própria dos tokens.
+- Lista de efeitos que removem sombras.
+- Animação das sombras de luzes.
+- Exibição de sombras individualmente em cada computador.
 
-## Desempenho
-O módulo foi feito para ser leve:
-- cada token/tile só recalcula a sombra quando algo que a afeta muda (posição, rotação, luzes, cena, efeitos);
-- eventos frequentes de luz e visão só disparam recálculo se as luzes realmente mudaram;
-- uma malha pequena por sombra, enviada à placa de vídeo só quando a sombra muda;
-- o tremor roda a cerca de 20 quadros por segundo, só nas sombras animadas que aparecem na tela;
-- o desfoque usa uma passada em meia resolução e só existe se houver sombra para desfocar;
-- as paredes próximas de cada sombra são buscadas só quando algo muda.
+As opções individuais de tokens e tiles ficam disponíveis na seção **Umbra — Sombras de Token**, dentro das configurações de aparência.
 
-Para aliviar ainda mais em mapas grandes: reduza o **Máximo padrão de sombras** para 1, diminua a **Suavização** (0 desliga o filtro), desligue o **tremor** ou use **Mostrar sombras** nos computadores mais fracos.
+## 🛠️ Diagnóstico
 
-## Diagnóstico
-Se um token não mostra sombra, selecione-o e rode no console ou numa macro:
+Se um token não estiver projetando sombras, utilize a ferramenta de diagnóstico para identificar possíveis causas.
 
-```js
-game.modules.get("umbra-sombras").api.diagnosticarSombra();
-```
+Execute a seguinte macro ou comando no console do Foundry:
 
-O módulo sussurra para você um relatório com ✔/✘ dos motivos possíveis: opção ligada, projetar sombra, efeito que remove a sombra, imagem carregada, visibilidade, altura, máximo de sombras, luz natural e luzes que alcançam o token.
+`game.modules.get("umbra-sombras").api.diagnosticarSombra();`
 
-## Limitações
-- O corte pelas paredes é feito por vértice numa malha de 9 colunas, então em cantos e paredes muito inclinadas a borda pode ficar levemente facetada.
-- Sombras de tiles ficam abaixo da camada de tiles: um tile de piso no mesmo nível cobre a sombra de um objeto.
-- O diagnóstico funciona só para tokens.
+O diagnóstico apresenta um relatório com indicadores de verificação para opções de configuração, efeitos ativos, carregamento da imagem, visibilidade, altura, quantidade de sombras e fontes de luz.
 
-## Autor
-Olho da Tormenta
+## 🚀 Desempenho
+
+O módulo foi desenvolvido para recalcular as sombras somente quando necessário, reduzindo o trabalho da placa de vídeo durante a sessão.
+
+Para melhorar o desempenho em mapas grandes ou computadores menos potentes, você pode:
+
+- Reduzir a quantidade máxima de sombras por objeto.
+- Diminuir a suavização ou desativar o desfoque.
+- Desativar o tremor das sombras animadas.
+- Ocultar as sombras individualmente no computador que precisar de mais desempenho.
+
+## 📦 Instalação
+
+**Instalação pelo Foundry VTT:**
+
+1. Acesse *Add-on Modules → Install Module*.
+2. Cole a URL abaixo no campo **Manifest URL**.
+3. Instale o módulo e ative-o no mundo desejado.
+
+`https://github.com/dralfin/Umbra-Sombras-de-Token/releases/latest/download/module.json`
+
+**Instalação manual:** extraia o módulo em `Data/modules/umbra-sombras` e reinicie o Foundry VTT.
+
+## 📋 Requisitos
+
+- **Foundry Virtual Tabletop:** versão 13.
+- **Sistema de jogo:** compatível com qualquer sistema.
+
+## ⚠️ Limitações conhecidas
+
+- O recorte das sombras pelas paredes utiliza uma malha que pode produzir bordas levemente facetadas em cantos e paredes muito inclinadas.
+- As sombras dos tiles ficam abaixo da camada de tiles; portanto, tiles de piso no mesmo nível podem cobrir as sombras dos objetos.
+- A ferramenta de diagnóstico funciona apenas para tokens.
+
+## 🤝 Suporte e contribuições
+
+Encontrou um problema ou tem uma sugestão? Acesse o [repositório do Umbra no GitHub](https://github.com/dralfin/Umbra-Sombras-de-Token) para consultar o projeto e contribuir com melhorias.
+
+---
+
+**Desenvolvido para trazer mais profundidade, realismo e imersão às suas cenas no Foundry VTT.**
+
+**Desenvolvido por Olho da Tormenta**
